@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0a0a0a, #111827, #1e293b);
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+header p {
+    max-width: 800px;
+    margin: auto;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.filters {
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.filter-block {
+    display: flex;
+    flex-direction: column;
+}
+
+select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #4b5563;
+    background: #1f2937;
+    color: white;
+    font-size: 1rem;
+}
+
+#btnGenerate {
+    padding: 12px 20px;
+    background: #3b82f6;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+}
+
+#btnGenerate:hover {
+    background: #2563eb;
+}
+
+.chart-container {
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+}
+
+/* --- Agrandir le graphique --- */
+#cloudChart {
+    width: 100% !important;
+    height: 550px !important;  /* plus grand */
+}
+
+/* --- Rendre le texte du graphique bien visible --- */
+.chart-container {
+    color: white !important;
+}
+
+.chart-container canvas {
+    background: transparent !important;
+}

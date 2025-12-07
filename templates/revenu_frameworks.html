@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Revenu Frameworks - StackOverflow 2023</title>
+    <link rel="stylesheet" href="../css/revenu_frameworks.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header>
+    <h1>Revenu moyen selon les frameworks Web</h1>
+    <p>
+        Visualisez les revenus moyens des professionnels en fonction des frameworks Web 
+        qu’ils ont utilisés. Sélectionnez un pays et un nombre d’années d’expérience 
+        pour afficher le résultat.
+    </p>
+</header>
+
+<section class="filters">
+
+    <div class="filter-block">
+        <label>Pays :</label>
+        <select id="countrySelect">
+            <option value="">Sélectionner un pays</option>
+        </select>
+    </div>
+
+    <div class="filter-block">
+        <label>Années d'expérience :</label>
+        <select id="expSelect">
+            <option value="">Sélectionner</option>
+        </select>
+    </div>
+
+    <button id="btnGenerate">Générer</button>
+</section>
+
+<section class="chart-container">
+    <canvas id="frameworkChart"></canvas>
+</section>
+
+<script src="../js/data_loader.js"></script>
+<script src="../js/currency_converter.js"></script>
+<script src="../js/revenu_frameworks.js"></script>
+
+</body>
+</html>

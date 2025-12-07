@@ -1,0 +1,82 @@
+/* --- FOND GLOBAL --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 10%, #111827 50%, #0f172a 90%);
+    color: white;
+}
+
+/* --- HEADER --- */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* --- SELECTEUR CONTINENT --- */
+.selector {
+    margin-top: 25px;
+}
+
+.selector select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: #1f2937;
+    border: 1px solid #4b5563;
+    color: white;
+    font-size: 1rem;
+}
+
+/* --- CARDS --- */
+.cards {
+    margin: 50px auto;
+    max-width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.card {
+    width: 270px;
+    padding: 25px 20px;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1e293b, #111827);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+
+    cursor: pointer;
+    transition: 0.3s ease;
+    border-left: 4px solid #3b82f6;
+}
+
+/* --- TEXTE BLOC --- */
+.card h3 {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+}
+
+.card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #eab308;
+}
+
+/* --- HOVER --- */
+.card:hover {
+    transform: scale(1.04);
+    background: linear-gradient(145deg, #334155, #1e293b);
+    box-shadow: 0px 0px 18px rgba(59, 130, 246, 0.7);
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard StackOverflow 2023</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+
+<body>
+
+<header>
+        <h1>Bienvenue sur le Dashboard StackOverflow 2023</h1>
+        <p>
+            Explorez les données de l’enquête StackOverflow 2023 grâce à des visualisations 
+            interactives. Sélectionnez un continent, puis choisissez l’une des analyses disponibles : 
+            revenus moyens selon les technologies, plateformes utilisées, ou systèmes d’exploitation. 
+            Cliquez simplement sur un bouton pour afficher le graphique correspondant.
+        </p>
+    <div class="selector">
+        <label for="continentSelect">Continent :</label>
+        <select id="continentSelect">
+            <option value="">-- choisir un continent --</option>
+            <option value="WE">Europe</option>
+            <option value="NA">Amérique du Nord</option>
+        </select>
+    </div>
+</header>
+
+<section class="cards">
+
+    <div class="card" id="btnExp">
+        <h3>Revenu moyen — Années d'expérience</h3>
+        <p>Analyse selon le niveau d'expérience</p>
+    </div>
+
+    <div class="card" id="btnEtudes">
+        <h3>Revenu moyen — Niveau d’études</h3>
+        <p>Analyse selon le diplôme obtenu</p>
+    </div>
+
+    <div class="card" id="btnCloud">
+        <h3>Revenu moyen — Plateformes Cloud</h3>
+        <p>Analyse selon les technologies Cloud utilisées</p>
+    </div>
+
+    <div class="card" id="btnFrameworks">
+        <h3>Revenu moyen — Frameworks Web</h3>
+        <p>Analyse selon les frameworks utilisés</p>
+    </div>
+
+    <div class="card" id="btnOS">
+        <h3>Top OS utilisés </h3>
+        <p>Systèmes d’exploitation les plus utilisés</p>
+    </div>
+
+    <div class="card" id="btnComm">
+        <h3>Top outils de communication</h3>
+        <p>Outils les plus utilisés selon DevType</p>
+    </div>
+
+    <div class="card" id="btnLang">
+        <h3>Top langages populaires</h3>
+        <p>Les technos les plus utilisées</p>
+    </div>
+
+</section>
+
+<script src="../js/index.js"></script>
+</body>
+</html>
