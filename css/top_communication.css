@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0a0a0a, #111827, #1e293b);
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    opacity: 0.9;
+    max-width: 700px;
+    margin: auto;
+}
+
+.filters {
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.filter-block {
+    display: flex;
+    flex-direction: column;
+}
+
+select {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #4b5563;
+    background: #1f2937;
+    color: white;
+    font-size: 1rem;
+}
+
+#btnGenerate {
+    padding: 12px 20px;
+    background: #3b82f6;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+}
+
+#btnGenerate:hover {
+    background: #2563eb;
+}
+
+.chart-container {
+    width: 90%;
+    margin: 40px auto;
+}
+
+.chart-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+#legendZone {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+}
+#outilComChart {
+    max-width: 450px;
+    max-height: 450px;
+}

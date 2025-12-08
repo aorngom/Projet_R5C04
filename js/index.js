@@ -7,8 +7,7 @@ const buttons = {
     btnCloud: "revenu_cloud.html",
     btnFrameworks: "revenu_frameworks.html",
     btnOS: "top_os.html",
-    btnComm: "top_communication.html",
-    btnLang: "top_langages.html"
+    btnComm: "top_communication.html"
 };
 
 // Désactiver tous les blocs tant que pas de continent
