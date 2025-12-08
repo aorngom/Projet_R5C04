@@ -1,6 +1,6 @@
 let continent = null;
 let loadedData = [];
-let workExpChart = null; // pour pouvoir détruire l'ancien graphique (si un user selection quelque chose de nouveau dan sle filtre)
+let edLevelChart = null; // pour pouvoir détruire l'ancien graphique (si un user selection quelque chose de nouveau dan sle filtre)
 
 document.addEventListener("DOMContentLoaded", async () => {
     const params = new URLSearchParams(window.location.search);
@@ -37,10 +37,9 @@ function getCountries(jsonData) {
     return [...new Set(jsonData.map(item => item.Country))];
 }
 
-// Liste des années d'expériences
-function getWorkExp(jsonData) {
-    return [...new Set(jsonData.filter(item => item.WorkExp !== 'NA').map(item => parseInt(item.WorkExp)))]
-        .sort((a, b) => a - b);
+// Liste des niveaux d'études
+function getStudies(jsonData) {
+    return [...new Set(jsonData.filter(item => item.EdLevel !== 'NA').map(item => item.EdLevel))];
 }
 
 //  Bouton Generer
@@ -53,46 +52,45 @@ document.getElementById("btnGenerate").addEventListener("click", () => {
     }
 
     const listePays = getCountries(loadedData);
-    const listeWorkExp = getWorkExp(loadedData);
-    const data = calculerRevenuExp(listePays, listeWorkExp);
+    const listeEdLevel = getStudies(loadedData);
+    const data = calculerRevenuEdLevel(listePays, listeEdLevel);
 
     afficherGraphique(data, country);
 });
 
 //  Calcul revenu moyen pour Cloud
-function calculerRevenuExp(listePays, listeWorkExp) {
+function calculerRevenuEdLevel(listePays, listeEdLevel) {
     let dict = {};
     let count = {};
 
     // initialisation du dictionnaire
-    listeWorkExp.forEach(workExp => {
-        dict[workExp] = {};
-        count[workExp] = {};
+    listeEdLevel.forEach(edLevel => {
+        dict[edLevel] = {};
+        count[edLevel] = {};
 
         listePays.forEach(country => {
-            dict[workExp][country] = 0;
-            count[workExp][country] = 0;
+            dict[edLevel][country] = 0;
+            count[edLevel][country] = 0;
         });
     });
     // parcourir les données JSON
     loadedData.forEach(item => {
         let pays = item.Country;
-        let workExp = item.WorkExp;
+        let edLevel = item.EdLevel;
         let currency = item.Currency;
         let comp = item.CompTotal;
 
-        if (workExp !== 'NA' && currency !== 'NA' && comp !== 'NA') {
-            workExp = parseInt(workExp);
+        if (edLevel !== 'NA' && currency !== 'NA' && comp !== 'NA') {
             comp = parseFloat(comp);
-            count[workExp][pays] += 1;
-            dict[workExp][pays] += convertirEnEuro(comp, currency);
+            count[edLevel][pays] += 1;
+            dict[edLevel][pays] += convertirEnEuro(comp, currency);
         }
     });
     // calculer le revenu moyen
-    listeWorkExp.forEach(workExp => {
+    listeEdLevel.forEach(edLevel => {
         listePays.forEach(pays => {
-            if (count[workExp][pays] > 0) {
-                dict[workExp][pays] /= count[workExp][pays];
+            if (count[edLevel][pays] > 0) {
+                dict[edLevel][pays] /= count[edLevel][pays];
             }
         });
     });
@@ -103,20 +101,20 @@ function calculerRevenuExp(listePays, listeWorkExp) {
 //  Chart.js 
 function afficherGraphique(dict, country) {
 
-    const canvas = document.getElementById("workExpChart");
+    const canvas = document.getElementById("edLevelChart");
 
     // Détruire l'ancien graphique
-    if (workExpChart) {
-        workExpChart.destroy();
+    if (edLevelChart) {
+        edLevelChart.destroy();
     }
 
-    const workExps = Object.keys(dict).map(x => parseInt(x)).sort((a,b)=>a-b);
-    const revenus = workExps.map(exp => dict[exp][country]);
+    const edLevels = Object.keys(dict);
+    const revenus = edLevels.map(exp => dict[exp][country]);
 
-    workExpChart = new Chart(canvas, {
+    edLevelChart = new Chart(canvas, {
         type: 'bar',
         data: {
-            labels: workExps,
+            labels: edLevels,
             datasets: [{
                 label: "Revenu moyen (€)",
                 data: revenus,
