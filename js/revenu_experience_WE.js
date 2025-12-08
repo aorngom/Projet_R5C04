@@ -5,28 +5,48 @@ function getCurrencies(jsonData) {
 
 // Convertir en euro les monnaies de chaque pays de l'Europe de l'Ouest
 const CURRENCY_EURO = {
-    "USD": 0.92,
-    "CAD": 0.67,
-    "UZS": 0.000074,
-    "UGX": 0.00024,
-    "AED": 0.25,
-    "SAR": 0.25,
-    "GHS": 0.075,
-    "EUR": 1.00,
-    "MYR": 0.20,
-    "BGN": 0.51,
-    "ILS": 0.25,
-    "AMD": 0.0023,
-    "CRC": 0.0017,
-    "BAM": 0.51,
-    "GBP": 1.17,
-    "HKD": 0.12,
-    "INR": 0.011,
-    "TWD": 0.029,
-    "AUD": 0.60,
-    "CNY": 0.13,
-    "JPY": 0.0060,
-    "BOB": 0.13
+    'GBP': 0.85,
+    'EUR': 1.00,
+    'CHF': 0.95,
+    'PLN': 4.45,
+    'USD': 1.07,
+    'CAD': 1.45,
+    'CUP': 24.00,
+    'XPF': 119.33,
+    'IRR': 45000.00,
+    'FJD': 2.41,
+    'GIP': 0.85,
+    'UAH': 41.50,
+    'ZAR': 20.15,
+    'ALL': 102.00,
+    'CDF': 2700.00,
+    'ANG': 1.93,
+    'AED': 3.93,
+    'FKP': 0.85,
+    'CLP': 950.00,
+    'ZMW': 28.50,
+    'BRL': 5.45,
+    'DJF': 190.00,
+    'GHS': 14.20,
+    'HUF': 385.00,
+    'AFN': 77.00,
+    'THB': 38.50,
+    'AZN': 1.82,
+    'AUD': 1.63,
+    'TWD': 34.20,
+    'YER': 268.00,
+    'AWG': 1.93,
+    'BAM': 1.96,
+    'QAR': 3.89,
+    'LAK': 22000.00,
+    'PEN': 4.05,
+    'BIF': 3100.00,
+    'SLL': 22000.00,
+    'NOK': 11.50,
+    'IDR': 16800.00,
+    'AMD': 420.00,
+    'ARS': 920.00,
+    'COP': 4400.00
 };
 
 // Liste des pays de l'Europe de l'Ouest
@@ -138,23 +158,3 @@ function load_chart(dict, chartId, country) {
         }
     });
 }
-
-// Envoi de la requête vers le fichier JSON
-$.ajax({
-    type: "GET",
-    url: "./../survey_results_NA.json",
-    success: function(data) {
-        const listePays = getCountries(data);
-        const listeWorkExp = getWorkExp(data);
-        const dict = calculerRevenuParExperience(data, listePays, listeWorkExp);
-
-        console.log(getCurrencies(data));
-        createCountriesDropDown(listePays, dict);
-
-        // Pays par défaut
-        load_chart(dict, "chart", listePays[0]);
-    },
-    error: function (http_error) {
-        alert("Erreur " + http_error.status + " (" + http_error.statusText + ")");
-    }
-});
