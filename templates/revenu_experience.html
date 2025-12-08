@@ -1,19 +1,38 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Revenu moyen par année d'expériences</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  <body>
-    <h1>Revenu moyen par année d'expériences des pays de l'Europe de l'Ouest</h1>
-    <div id="countriesDropDown">
-      <label for="countriesDropDown">Choisir un pays : </label>
-    </div>
-    <div>
-      <canvas id="chart"></canvas>
-    </div>
-    <script src="./../js/revenu_experience_WE.js"></script>
-  </body>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Revenu Experience - StackOverflow 2023</title>
+        <link rel="stylesheet" href="../css/revenu_experience.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Revenu moyen selon les années d'expérience</h1>
+            <p>
+                Visualisez les revenus moyens des professionnels en fonction de leur année d'expérience. 
+                Sélectionnez un pays et un nombre d’années d’expérience pour afficher le résultat.
+            </p>
+        </header>
+
+        <section class="filters">
+
+            <div class="filter-block">
+                <label>Pays :</label>
+                <select id="countrySelect">
+                    <option value="">Sélectionner un pays</option>
+                </select>
+            </div>
+
+            <button id="btnGenerate">Générer</button>
+        </section>
+
+        <section class="chart-container">
+            <canvas id="workExpChart" style="max-width:900px; margin: 0 auto;"></canvas>
+        </section>
+
+        <script src="../js/data_loader.js"></script>
+        <script src="../js/currency_converter.js"></script>
+        <script src="../js/revenu_experience.js"></script>
+    </body>
 </html>
