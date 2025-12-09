@@ -2,12 +2,12 @@ const continentSelect = document.getElementById("continentSelect");
 
 // Toutes les cartes
 const buttons = {
-    btnExp: "revenu_experience.html",
-    btnEtudes: "revenu_etudes.html",
-    btnCloud: "revenu_cloud.html",
-    btnFrameworks: "revenu_frameworks.html",
-    btnOS: "top_os.html",
-    btnComm: "top_communication.html"
+    btnExp: "../templates/revenu_experience.html",
+    btnEtudes: "../templates/revenu_etudes.html",
+    btnCloud: "../templates/revenu_cloud.html",
+    btnFrameworks: "../templates/revenu_frameworks.html",
+    btnOS: "../templates/top_os.html",
+    btnComm: "../templates/top_communication.html"
 };
 
 // Désactiver tous les blocs tant que pas de continent
