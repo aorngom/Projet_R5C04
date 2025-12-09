@@ -110,38 +110,64 @@ function afficherGraphique(dict, country) {
         workExpChart.destroy();
     }
 
-    const workExps = Object.keys(dict).map(x => parseInt(x)).sort((a,b)=>a-b);
+    const workExps = Object.keys(dict).map(x => parseInt(x)).sort((a, b) => a - b);
     const revenus = workExps.map(exp => dict[exp][country]);
 
     workExpChart = new Chart(canvas, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: workExps,
             datasets: [{
                 label: "Revenu moyen (€)",
                 data: revenus,
-                backgroundColor: "rgba(109,132,255,0.7)"
+                borderColor: "rgba(109, 132, 255, 1)",     // ligne bien visible
+                backgroundColor: "rgba(109, 132, 255, 0.25)", // zone sous la courbe
+                borderWidth: 3,                              // ligne plus épaisse
+                pointBackgroundColor: "#ffffff",             // points blancs
+                pointBorderColor: "rgba(109, 132, 255, 1)",
+                pointRadius: 4,                               // points plus visibles
+                pointHoverRadius: 6
             }]
         },
         options: {
             responsive: true,
+            tension: 0.3, // courbe légèrement arrondie
             scales: {
                 x: {
                     beginAtZero: true,
-                    ticks: { color: "#ffffff" },   // texte axe X
-                    grid: { color: "rgba(255,255,255,0.1)" }
+                    ticks: {
+                        color: "#ffffff",
+                        font: { size: 14 }
+                    },
+                    grid: {
+                        color: "rgba(255,255,255,0.1)"
+                    }
                 },
                 y: {
-                    ticks: { color: "#ffffff" },   // texte axe Y
-                    grid: { color: "rgba(255,255,255,0.1)" }
+                    ticks: {
+                        color: "#ffffff",
+                        font: { size: 14 }
+                    },
+                    grid: {
+                        color: "rgba(255,255,255,0.1)"
+                    }
                 }
             },
             plugins: {
                 legend: {
-                    labels: { color: "#ffffff" }   // texte de la légende
+                    labels: {
+                        color: "#ffffff",
+                        font: { size: 14 }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: "rgba(20,20,20,0.9)",
+                    titleColor: "#ffffff",
+                    bodyColor: "#ffffff",
+                    borderColor: "rgba(255,255,255,0.3)",
+                    borderWidth: 1
                 }
             }
         }
-        
     });
 }

@@ -55,8 +55,7 @@ document.getElementById("btnGenerate").addEventListener("click", () => {
 
     const topData = data.slice(0, topN);
 
-    afficherDonut(topData);
-    afficherLegende(topData);
+    afficherOutilsCom(topData);
 });
 
 //    Calcul du TOP Outil de communication
@@ -83,7 +82,7 @@ function calculerTopOutilCom(devType) {
 }
 
 // Affichage du donut Chart.js
-function afficherDonut(data) {
+function afficherOutilsCom(data) {
 
     const canvas = document.getElementById("outilComChart");
 
@@ -91,54 +90,54 @@ function afficherDonut(data) {
         outilComChart.destroy();
     }
 
+    // Tri décroissant pour avoir un vrai "Top"
+    data = data.sort((a, b) => b.count - a.count);
+
+    const labels = data.map(x => x.outilCom);
+    const values = data.map(x => x.count);
+
     const colors = [
         "#38bdf8", "#f472b6", "#a78bfa",
-        "#34d399", "#facc15", "#fb923c",
-        "#f87171", "#4ade80"
+        "#34d399", "#facc15"
     ];
 
     outilComChart = new Chart(canvas, {
-        type: "doughnut",
+        type: "bar",
         data: {
-            labels: data.map(x => x.os),
+            labels: labels,
             datasets: [{
-                data: data.map(x => x.count),
+                label: "Nombre d'utilisations",
+                data: values,
                 backgroundColor: colors.slice(0, data.length),
-                borderWidth: 2,
-                borderColor: "#0f172a",
-                cutout: "55%"
+                borderColor: "#ffffff",
+                borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            indexAxis: "y", // ← Bar chart horizontal
             plugins: {
-                legend: { display: false }
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: "rgba(20,20,20,0.9)",
+                    titleColor: "#ffffff",
+                    bodyColor: "#ffffff",
+                    borderWidth: 1,
+                    borderColor: "rgba(255,255,255,0.3)"
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: "#ffffff" },
+                    grid: { color: "rgba(255,255,255,0.1)" }
+                },
+                y: {
+                    ticks: { color: "#ffffff" },
+                    grid: { color: "rgba(255,255,255,0.05)" }
+                }
             }
         }
-    });
-}
-
-//  Génération de la légende
-function afficherLegende(data) {
-
-    const zone = document.getElementById("legendZone");
-    zone.innerHTML = "";
-
-    const colors = [
-        "#38bdf8", "#f472b6", "#a78bfa",
-        "#34d399", "#facc15", "#fb923c",
-        "#f87171", "#4ade80"
-    ];
-
-    data.forEach((item, index) => {
-        const div = document.createElement("div");
-        div.className = "legend-item";
-
-        div.innerHTML = `
-            <div class="legend-color" style="background:${colors[index]}"></div>
-            ${item.outilCom} (${item.count})
-        `;
-
-        zone.appendChild(div);
     });
 }

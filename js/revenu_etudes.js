@@ -108,8 +108,11 @@ function afficherGraphique(dict, country) {
         edLevelChart.destroy();
     }
 
+    // Récupération des labels (niveaux d'études)
     const edLevels = Object.keys(dict);
-    const revenus = edLevels.map(exp => dict[exp][country]);
+
+    // Récupération des revenus moyens selon le pays
+    const revenus = edLevels.map(level => dict[level][country]);
 
     edLevelChart = new Chart(canvas, {
         type: 'bar',
@@ -118,28 +121,49 @@ function afficherGraphique(dict, country) {
             datasets: [{
                 label: "Revenu moyen (€)",
                 data: revenus,
-                backgroundColor: "rgba(109,132,255,0.7)"
+                backgroundColor: "rgba(109,132,255,0.6)",
+                borderColor: "rgba(109,132,255,1)",
+                borderWidth: 2
             }]
         },
         options: {
             responsive: true,
+            indexAxis: 'y',
             scales: {
                 x: {
-                    beginAtZero: true,
-                    ticks: { color: "#ffffff" },   // texte axe X
-                    grid: { color: "rgba(255,255,255,0.1)" }
+                    ticks: {
+                        color: "#ffffff",
+                        font: { size: 13 }
+                    },
+                    grid: {
+                        color: "rgba(255,255,255,0.1)"
+                    }
                 },
                 y: {
-                    ticks: { color: "#ffffff" },   // texte axe Y
-                    grid: { color: "rgba(255,255,255,0.1)" }
+                    ticks: {
+                        color: "#ffffff",
+                        font: { size: 13 }
+                    },
+                    grid: {
+                        color: "rgba(255,255,255,0.05)"
+                    }
                 }
             },
             plugins: {
                 legend: {
-                    labels: { color: "#ffffff" }   // texte de la légende
+                    labels: {
+                        color: "#ffffff",
+                        font: { size: 14 }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: "rgba(20,20,20,0.9)",
+                    titleColor: "#ffffff",
+                    bodyColor: "#ffffff",
+                    borderColor: "rgba(255,255,255,0.2)",
+                    borderWidth: 1
                 }
             }
         }
-        
     });
 }
